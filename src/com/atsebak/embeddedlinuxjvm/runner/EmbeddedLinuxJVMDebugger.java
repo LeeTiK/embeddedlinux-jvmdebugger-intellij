@@ -53,22 +53,22 @@ public class EmbeddedLinuxJVMDebugger extends GenericDebuggerRunner {
     /**
      * Executes the runner
      *
-     * @param project
+     //* @param project
      * @param state
-     * @param contentToReuse
+  //   * @param contentToReuse
      * @param environment
      * @return
      * @throws ExecutionException
      */
     @Override
-    protected RunContentDescriptor doExecute(@NotNull Project project, @NotNull RunProfileState state, RunContentDescriptor contentToReuse, @NotNull ExecutionEnvironment environment) throws ExecutionException {
+    protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment environment) throws ExecutionException {
         final RunProfile runProfileRaw = environment.getRunProfile();
         if (runProfileRaw instanceof EmbeddedLinuxJVMRunConfiguration) {
             FileDocumentManager.getInstance().saveAllDocuments();
             setupConsole(environment.getProject());
-            super.doExecute(project, state, contentToReuse, environment);
+            super.doExecute(state,environment);
         }
-        return super.doExecute(project, state, contentToReuse, environment);
+        return super.doExecute(state, environment);
     }
 
     /**
